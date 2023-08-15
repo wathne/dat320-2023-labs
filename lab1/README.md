@@ -237,7 +237,7 @@ Below we use `git@github.com:dat320-2023/username-labs.git` as an example.
 # clone the Git repo with SSH into the $HOME/assignments directory
 git clone git@github.com:dat320-2023/username-labs.git assignments
 cd assignments
-git remote add course-assignments https://github.com/dat320-2023/assignments.git
+git remote add course-assignments git@github.com:dat320-2023/assignments.git
 git pull course-assignments main
 ```
 
