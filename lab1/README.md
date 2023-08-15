@@ -40,12 +40,6 @@ However, we will also be using some machines in our Linux lab, named `gorina1` -
 through remote access; see below for more information about this.
 All necessary software for this course should be installed on these machines.
 
-Some of the assignments includes a networking part, requiring you to run your code on several machines.
-This can be conveniently done using the machines mentioned above.
-To be able to log into these machines you will need an account on the Unix system.
-
-For more rapid testing, you may also run networking code from different ports on your local machine, i.e. `localhost`.
-
 ### Task: Sign up for Unix Account - Do It Now
 
 Some of you may already have done this one:
@@ -61,10 +55,6 @@ Throughout this and other courses and as a software engineer, you will often nee
 Lack of knowledge of the available tools will lead to manually performing repetitive tasks or spending lots of time searching online for solutions.
 For these reasons and more, we expect you to go through [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) from MIT (hereafter referred to as the Missing Semester).
 You can read more about the motivation behind that course [here](https://missing.csail.mit.edu/about/).
-
-Fun fact: One of the lecturers in this course is a Norwegian, [Jon Gjengset](https://thesquareplanet.com).
-He was a PhD student at MIT.
-He is now a software engineer at AWS and YouTuber, specializing in lengthy live-coding sessions about building stuff using the Rust programming language.
 
 You should try to answer or at least understand the answers to the **Exercises** section at the end of each lecture.
 Additionally we give a set of multiple choice questions below, which mostly correspond to lectures 1, 2, 4, 5, and 6.
