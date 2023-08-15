@@ -3,8 +3,7 @@
 | Lab 1: | Introduction to Unix |
 | ---------------------    | --------------------- |
 | Subject:                 | DAT320 Operating Systems and Systems Programming |
-| Deadline:                | **September 6, 2022 23:59** |
-| Expected effort:         | 6-7 hours |
+| Deadline:                | **September 9, 2023 23:59** |
 | Grading:                 | Pass/fail |
 | Submission:              | Individually |
 
@@ -36,15 +35,9 @@ If you already run Linux or macOS on your laptop, you should be ready to go.
 Linux and macOS are to a large extent relatively similar at the command level.
 If you are running Windows, please consult the instructions [here](https://github.com/dat320-2023/info/blob/main/setup-wsl.md).
 
-However, we will also be using some machines in our Linux lab, named `pitter1` - `pitter20`,
+However, we will also be using some machines in our Linux lab, named `gorina1` - `gorina3`,
 through remote access; see below for more information about this.
 All necessary software for this course should be installed on these machines.
-
-Some of the assignments includes a networking part, requiring you to run your code on several machines.
-This can be conveniently done using the machines mentioned above.
-To be able to log into these machines you will need an account on the Unix system.
-
-For more rapid testing, you may also run networking code from different ports on your local machine, i.e. `localhost`.
 
 ### Task: Sign up for Unix Account - Do It Now
 
@@ -61,10 +54,6 @@ Throughout this and other courses and as a software engineer, you will often nee
 Lack of knowledge of the available tools will lead to manually performing repetitive tasks or spending lots of time searching online for solutions.
 For these reasons and more, we expect you to go through [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/) from MIT (hereafter referred to as the Missing Semester).
 You can read more about the motivation behind that course [here](https://missing.csail.mit.edu/about/).
-
-Fun fact: One of the lecturers in this course is a Norwegian, [Jon Gjengset](https://thesquareplanet.com).
-He was a PhD student at MIT.
-He is now a software engineer at AWS and YouTuber, specializing in lengthy live-coding sessions about building stuff using the Rust programming language.
 
 You should try to answer or at least understand the answers to the **Exercises** section at the end of each lecture.
 Additionally we give a set of multiple choice questions below, which mostly correspond to lectures 1, 2, 4, 5, and 6.
@@ -83,15 +72,6 @@ Additionally we give a set of multiple choice questions below, which mostly corr
 - *Tip:* Use the `git help` command whenever in doubt about a Git command.
   It lets you read more about the functionality of each of Git's subcommands, e.g. by running `git help commit` for information about `git commit`, such as options, or `git help pull` for information about `git pull`.
 
-- *Tip:* Navigating `man`, `less` and `git help` buffers: The buffers opened by the `man`, `less` and `git help` commands support vi(m)-like navigation.
-  - You can move down by one line by pressing the `Down` arrow key or the `j` key, or up by one line by pressing the `Up` arrow key or the `k` key.
-  - You can move up or down by one page by pressing the `PageUp` and `PageDown` keys.
-    Alternatively you can press the `f` ("forward") or `b` ("backward") keys.
-  - You can go to the start or end of the buffer by pressing the respective `Home` and `End` keys.
-    Alternatively you can press the `g` or `G` keys for the same functionality.
-    There are often examples at the end of man pages.
-  - You can search for some text by pressing the `/` key.
-    Press `n` to go to the next match, and `N` to go to the previous match.
 
 ### Task: Unix/Linux and Git Multiple-Choice Questions
 
@@ -147,7 +127,7 @@ If you are on campus however, you can skip the above step.
 To log on to one of the machines in the Linux lab, I can run:
 
 ```console
-ssh meling@pitter18.ux.uis.no
+ssh meling@gorina1.ux.uis.no
 ```
 
 This will prompt for your password.
@@ -237,7 +217,7 @@ Below we use `git@github.com:dat320-2023/username-labs.git` as an example.
 # clone the Git repo with SSH into the $HOME/assignments directory
 git clone git@github.com:dat320-2023/username-labs.git assignments
 cd assignments
-git remote add course-assignments https://github.com/dat320-2023/assignments.git
+git remote add course-assignments git@github.com:dat320-2023/assignments.git
 git pull course-assignments main
 ```
 
