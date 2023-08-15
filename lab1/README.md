@@ -73,15 +73,6 @@ Additionally we give a set of multiple choice questions below, which mostly corr
 - *Tip:* Use the `git help` command whenever in doubt about a Git command.
   It lets you read more about the functionality of each of Git's subcommands, e.g. by running `git help commit` for information about `git commit`, such as options, or `git help pull` for information about `git pull`.
 
-- *Tip:* Navigating `man`, `less` and `git help` buffers: The buffers opened by the `man`, `less` and `git help` commands support vi(m)-like navigation.
-  - You can move down by one line by pressing the `Down` arrow key or the `j` key, or up by one line by pressing the `Up` arrow key or the `k` key.
-  - You can move up or down by one page by pressing the `PageUp` and `PageDown` keys.
-    Alternatively you can press the `f` ("forward") or `b` ("backward") keys.
-  - You can go to the start or end of the buffer by pressing the respective `Home` and `End` keys.
-    Alternatively you can press the `g` or `G` keys for the same functionality.
-    There are often examples at the end of man pages.
-  - You can search for some text by pressing the `/` key.
-    Press `n` to go to the next match, and `N` to go to the previous match.
 
 ### Task: Unix/Linux and Git Multiple-Choice Questions
 
