@@ -147,7 +147,7 @@ If you are on campus however, you can skip the above step.
 To log on to one of the machines in the Linux lab, I can run:
 
 ```console
-ssh meling@pitter18.ux.uis.no
+ssh meling@gorina1.ux.uis.no
 ```
 
 This will prompt for your password.
