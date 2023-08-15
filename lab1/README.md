@@ -3,8 +3,7 @@
 | Lab 1: | Introduction to Unix |
 | ---------------------    | --------------------- |
 | Subject:                 | DAT320 Operating Systems and Systems Programming |
-| Deadline:                | **September 6, 2022 23:59** |
-| Expected effort:         | 6-7 hours |
+| Deadline:                | **September 9, 2023 23:59** |
 | Grading:                 | Pass/fail |
 | Submission:              | Individually |
 
