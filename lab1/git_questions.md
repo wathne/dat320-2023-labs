@@ -40,9 +40,9 @@ No other changes to the text should be made.
 4. Why do we add `course-assignments` as a remote repository in when setting up our Git for this course (command sequence listed below)?
 
     ```console
-    git clone https://github.com/dat320-2023/username-labs assignments
+    git clone git@github.com:dat320-2023/username-labs assignments
     cd assignments
-    git remote add course-assignments https://github.com/dat320-2023/assignments
+    git remote add course-assignments git@github.com:dat320-2023/assignments
     ```
 
     - [ ] a) so that we automatically pull changes from the `assignments` repo into the `username-labs` repo with `git pull` when they become available
