@@ -218,7 +218,7 @@ Below we use `git@github.com:dat320-2023/username-labs.git` as an example.
 git clone git@github.com:dat320-2023/username-labs.git assignments
 cd assignments
 git remote add course-assignments git@github.com:dat320-2023/assignments.git
-git pull course-assignments main
+git pull course-assignments master
 ```
 
 #### Generating a Token
