@@ -10,7 +10,7 @@ No other changes to the text should be made.
     - [ ] a) `./args3 3 10 1`
     - [ ] b) `./args3 5 3 2`
     - [ ] c) `./args3 1 5 1 3`
-    - [ ] d) `./args3 5 3 1`
+    - [x] d) `./args3 5 3 1`
 
     ```c
     int main(int argc, char* argv[]) {
@@ -30,7 +30,7 @@ No other changes to the text should be made.
     ```
 
     - [ ] a) `a`
-    - [ ] b) `b`
+    - [x] b) `b`
     - [ ] c) `c`
     - [ ] d) `d`
     - [ ] e) `No match`
@@ -61,7 +61,7 @@ No other changes to the text should be made.
 
 3. Given the program below, which command-line argument should you pass to get `6` as the output?
 
-    - [ ] a) 6
+    - [x] a) 6
     - [ ] b) 9
     - [ ] c) 0
     - [ ] d) 15
@@ -76,7 +76,7 @@ No other changes to the text should be made.
 4. Given the program below, what is the final value of `i`?
 
     - [ ] a) 10
-    - [ ] b) 30
+    - [x] b) 30
     - [ ] c) 40
     - [ ] d) There is an error
 
@@ -95,7 +95,7 @@ No other changes to the text should be made.
 5. Given the program below, what is the final value of `i`?
 
     - [ ] a) 2
-    - [ ] b) 1
+    - [x] b) 1
     - [ ] c) 3
     - [ ] d) There is an error
 
@@ -108,7 +108,7 @@ No other changes to the text should be made.
 
 6. Given the program below, what is the final value of `i` after `main` has completed?
 
-    - [ ] a) 2
+    - [x] a) 2
     - [ ] b) 3
     - [ ] c) 5
     - [ ] d) 6
@@ -126,7 +126,7 @@ No other changes to the text should be made.
 
 7. Given the program below, how would you set the `pid` value of `p` to 10?
 
-    - [ ] a) `(*p).pid = 10;`
+    - [x] a) `(*p).pid = 10;`
     - [ ] b) `p.pid = 10;`
     - [ ] c) `pid = 10;`
     - [ ] d) `pid<-p = 10;`
@@ -150,12 +150,12 @@ No other changes to the text should be made.
     - [ ] b) `int *i = malloc(sizeof(int));`
     - [ ] c) `int *i = (int) malloc(sizeof(int));`
     - [ ] d) `int i = (int *) malloc(int);`
-    - [ ] e) `int *i = (int *) malloc(sizeof(int));`
+    - [x] e) `int *i = (int *) malloc(sizeof(int));`
 
 9. Given the C program below, what happens at the end of `function`?
 
     - [ ] a) The program crashes
-    - [ ] b) A memory leak
+    - [x] b) A memory leak
     - [ ] c) `c` is automatically deallocated and the program continues
     - [ ] d) `c` is reset to its default value instead of 'a'
 
@@ -170,7 +170,7 @@ No other changes to the text should be made.
 
     - [ ] a) Because `malloc` returns generic `ptr` which must be converted to an int pointer
     - [ ] b) Because `malloc` returns an int that must be converted to a pointer
-    - [ ] c) Because `malloc` returns `void *` which must be typecast to an `int *`
+    - [x] c) Because `malloc` returns `void *` which must be typecast to an `int *`
     - [ ] d) Because we must tell `malloc` that we want enough bytes to hold an int
 
     ```c
@@ -181,7 +181,7 @@ No other changes to the text should be made.
 
     - [ ] a) In compiler-specific directories
     - [ ] b) The syntax is incorrect
-    - [ ] c) In the same directory as this C program
+    - [x] c) In the same directory as this C program
     - [ ] d) In `/usr/local/include`
     - [ ] e) In the cloud
 
