@@ -1,0 +1,104 @@
+7   A, B, C, D, E, F, G, H, I    A, B, C, D, E, F, G, I, I    A, B, C, D, E, F, G, I    
+8   A, B, C, D, E, F, G, I, H    A, B, C, D, E, F, G, I, H    A, B, C, D, E, F, G, I    
+2   A, B, C, D, E, F, G, I    A, B, I, D, E, F, G, I    A, B, I, D, E, F, G    
+2   A, B, I, D, E, F, G, C    A, B, C, D, E, F, G, C    A, B, C, D, E, F, G    
+2   A, B, C, D, E, F, G, I    A, B, I, D, E, F, G, I    A, B, I, D, E, F, G    
+0   A, B, I, D, E, F, G, C    C, B, I, D, E, F, G, C    C, B, I, D, E, F, G    
+6   C, B, I, D, E, F, G, A    C, B, I, D, E, F, A, A    C, B, I, D, E, F, A    
+5   C, B, I, D, E, F, A, G    C, B, I, D, E, G, A, G    C, B, I, D, E, G, A    
+1   C, B, I, D, E, G, A, F    C, F, I, D, E, G, A, F    C, F, I, D, E, G, A    
+4   C, F, I, D, E, G, A, B    C, F, I, D, B, G, A, B    C, F, I, D, B, G, A    
+3   C, F, I, D, B, G, A, E    C, F, I, E, B, G, A, E    C, F, I, E, B, G, A    
+0   C, F, I, E, B, G, A, D    D, F, I, E, B, G, A, D    D, F, I, E, B, G, A    
+    system_ag_test.go:220: MISMATCH CPU 0: +got C( 5ms)(0x) -want I(15ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got C( 4ms)(0x) -want I(14ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got C( 3ms)(0x) -want I(13ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got C( 2ms)(0x) -want I(12ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got C( 1ms)(0x) -want I(11ms)(0x)
+2   D, F, I, E, B, G, A    D, F, A, E, B, G, A    D, F, A, E, B, G    
+6   D, F, A, E, B, G, I    D, F, A, E, B, G, I    D, F, A, E, B, G    
+    system_ag_test.go:220: MISMATCH CPU 0: +got I(15ms)(0x) -want C( 5ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got I(14ms)(0x) -want C( 4ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got I(13ms)(0x) -want C( 3ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got I(12ms)(0x) -want C( 2ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got I(11ms)(0x) -want C( 1ms)(0x)
+6   D, F, A, E, B, G, I    D, F, A, E, B, G, I    D, F, A, E, B, G    
+2   D, F, A, E, B, G, I    D, F, I, E, B, G, I    D, F, I, E, B, G    
+5   D, F, I, E, B, G, A    D, F, I, E, B, A, A    D, F, I, E, B, A    
+2   D, F, I, E, B, A, G    D, F, G, E, B, A, G    D, F, G, E, B, A    
+1   D, F, G, E, B, A    D, A, G, E, B, A    D, A, G, E, B    
+5   D, A, G, E, B, F    D, A, G, E, B, F    D, A, G, E, B    
+1   D, A, G, E, B, F    D, F, G, E, B, F    D, F, G, E, B    
+2   D, F, G, E, B, A    D, F, A, E, B, A    D, F, A, E, B    
+3   D, F, A, E, B, G    D, F, A, G, B, G    D, F, A, G, B    
+    system_ag_test.go:220: MISMATCH CPU 0: +got E(15ms)(0x) -want B(15ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got E(14ms)(0x) -want B(14ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got E(13ms)(0x) -want B(13ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got E(12ms)(0x) -want B(12ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got E(11ms)(0x) -want B(11ms)(0x)
+4   D, F, A, G, B, E    D, F, A, G, E, E    D, F, A, G, E    
+    system_ag_test.go:220: MISMATCH CPU 0: +got B(15ms)(0x) -want E(15ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got B(14ms)(0x) -want E(14ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got B(13ms)(0x) -want E(13ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got B(12ms)(0x) -want E(12ms)(0x)
+    system_ag_test.go:220: MISMATCH CPU 0: +got B(11ms)(0x) -want E(11ms)(0x)
+1   D, F, A, G, E, B    D, B, A, G, E, B    D, B, A, G, E    
+2   D, B, A, G, E, F    D, B, F, G, E, F    D, B, F, G, E    
+3   D, B, F, G, E    D, B, F, E, E    D, B, F, E    
+4   D, B, F, E, G    D, B, F, E, G    D, B, F, E    
+2   D, B, F, E    D, B, E, E    D, B, E    
+3   D, B, E, F    D, B, E, F    D, B, E    
+1   D, B, E    D, E, E    D, E    
+1   D, E, B    D, B, B    D, B    
+1   D, B, E    D, E, E    D, E    
+1   D, E, B    D, B, B    D, B    
+1   D, B    D, B    D    
+1   D, B    D, B    D    
+0   D    D        
+0   D    D        
+0   D    D        
+0   D    D        
+
+
+
+
+7   H( 5ms)(1x)A, B, C, D, E, F, G, H, I    A, B, C, D, E, F, G, I    H( 5ms)(1x)
+8   H( 5ms)(1x)A, B, C, D, E, F, G, I, H    A, B, C, D, E, F, G, I    H( 5ms)(1x)
+2   C(10ms)(1x)A, B, C, D, E, F, G, I    A, B, D, E, F, G, I    C(10ms)(1x)
+6   I(20ms)(1x)A, B, D, E, F, G, I, C    A, B, D, E, F, G, C    I(20ms)(1x)
+6   C(10ms)(1x)A, B, D, E, F, G, C, I    A, B, D, E, F, G, I    C(10ms)(1x)
+0   A(20ms)(1x)A, B, D, E, F, G, I, C    B, D, E, F, G, I, C    A(20ms)(1x)
+4   G(20ms)(1x)B, D, E, F, G, I, C, A    B, D, E, F, I, C, A    G(20ms)(1x)
+3   F(20ms)(1x)B, D, E, F, I, C, A, G    B, D, E, I, C, A, G    F(20ms)(1x)
+0   B(20ms)(1x)B, D, E, I, C, A, G, F    D, E, I, C, A, G, F    B(20ms)(1x)
+1   E(20ms)(1x)D, E, I, C, A, G, F, B    D, I, C, A, G, F, B    E(20ms)(1x)
+0   D(20ms)(1x)D, I, C, A, G, F, B, E    I, C, A, G, F, B, E    D(20ms)(1x)
+0   I(15ms)(1x)I, C, A, G, F, B, E, D    C, A, G, F, B, E, D    I(15ms)(1x)
+0   C( 5ms)(1x)C, A, G, F, B, E, D, I    A, G, F, B, E, D, I    C( 5ms)(1x)
+6   I(10ms)(1x)A, G, F, B, E, D, I    A, G, F, B, E, D    I(10ms)(1x)
+6   I(10ms)(1x)A, G, F, B, E, D, I    A, G, F, B, E, D    I(10ms)(1x)
+0   A(15ms)(1x)A, G, F, B, E, D, I    G, F, B, E, D, I    A(15ms)(1x)
+0   G(15ms)(1x)G, F, B, E, D, I, A    F, B, E, D, I, A    G(15ms)(1x)
+4   I( 5ms)(1x)F, B, E, D, I, A, G    F, B, E, D, A, G    I( 5ms)(1x)
+0   F(15ms)(1x)F, B, E, D, A, G    B, E, D, A, G    F(15ms)(1x)
+5   F(15ms)(1x)B, E, D, A, G, F    B, E, D, A, G    F(15ms)(1x)
+3   A(10ms)(1x)B, E, D, A, G, F    B, E, D, G, F    A(10ms)(1x)
+3   G(10ms)(1x)B, E, D, G, F, A    B, E, D, F, A    G(10ms)(1x)
+0   B(15ms)(1x)B, E, D, F, A, G    E, D, F, A, G    B(15ms)(1x)
+0   E(15ms)(1x)E, D, F, A, G, B    D, F, A, G, B    E(15ms)(1x)
+1   F(10ms)(1x)D, F, A, G, B, E    D, A, G, B, E    F(10ms)(1x)
+1   A( 5ms)(1x)D, A, G, B, E, F    D, G, B, E, F    A( 5ms)(1x)
+1   G( 5ms)(1x)D, G, B, E, F    D, B, E, F    G( 5ms)(1x)
+4   G( 5ms)(1x)D, B, E, F, G    D, B, E, F    G( 5ms)(1x)
+3   F( 5ms)(1x)D, B, E, F    D, B, E    F( 5ms)(1x)
+3   F( 5ms)(1x)D, B, E, F    D, B, E    F( 5ms)(1x)
+1   B(10ms)(1x)D, B, E    D, E    B(10ms)(1x)
+1   E(10ms)(1x)D, E, B    D, B    E(10ms)(1x)
+1   B(10ms)(1x)D, B, E    D, E    B(10ms)(1x)
+1   E( 5ms)(1x)D, E, B    D, B    E( 5ms)(1x)
+1   B( 5ms)(1x)D, B    D    B( 5ms)(1x)
+1   B( 5ms)(1x)D, B    D    B( 5ms)(1x)
+0   D(15ms)(1x)D        D(15ms)(1x)
+0   D(15ms)(1x)D        D(15ms)(1x)
+0   D(10ms)(1x)D        D(10ms)(1x)
+0   D( 5ms)(1x)D        D( 5ms)(1x)
