@@ -14,5 +14,9 @@ package sequence
 //	                   o o o       o o o
 //	                              o o o o
 func triangular(n uint) uint {
-	return 0
+	t := uint(0)
+	for i := uint(0); i <= n; i++ {
+		t = i + t
+	}
+	return t
 }
