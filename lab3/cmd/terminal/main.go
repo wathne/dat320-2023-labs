@@ -1,5 +1,12 @@
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
+
 // Task 7: Simple Shell
 //
 // This task focuses on building a simple shell that accepts
@@ -80,7 +87,68 @@ type Terminal struct {
 
 // Execute executes a given command
 func (t *Terminal) Execute(command string) {
-	// TODO (student): Make this run a given command
+	// TODO(wathne): Preserve whitespaces in command arguments.
+	substrings := strings.Fields(command)
+	length := len(substrings)
+	if length == 0 {
+		return
+	}
+	switch substrings[0] {
+	case "exit":
+		os.Exit(0)
+	case "cd":
+		if length < 2 {
+			return
+		}
+		os.Chdir(substrings[1])
+	case "ls":
+		files, _ := os.ReadDir(".")
+		for _, file := range files {
+			fmt.Println(file.Name())
+		}
+	case "mkdir":
+		if length < 2 {
+			return
+		}
+		os.Mkdir(substrings[1], 0777)
+	case "rm":
+		if length < 2 {
+			return
+		}
+		os.Remove(substrings[1])
+	case "create":
+		if length < 2 {
+			return
+		}
+		os.Create(substrings[1])
+	case "cat":
+		if length < 2 {
+			return
+		}
+		file, _ := os.Open(substrings[1])
+		scanner := bufio.NewScanner(file)
+		for scanner.Scan() {
+			fmt.Println(scanner.Text())
+		}
+	case "help":
+		fmt.Println("List of available commands:")
+		fmt.Println("exit")
+		fmt.Println("  - exit the program")
+		fmt.Println("cd [path]")
+		fmt.Println("  - change directory to a specified path")
+		fmt.Println("ls")
+		fmt.Println("  - list items and files in the current path")
+		fmt.Println("mkdir [path]")
+		fmt.Println("  - create a directory with the specified path")
+		fmt.Println("rm [path]")
+		fmt.Println("  - remove a specified file or folder")
+		fmt.Println("create [path]")
+		fmt.Println("  - create a file with a specified name")
+		fmt.Println("cat [file]")
+		fmt.Println("  - show the contents of a specified file")
+		fmt.Println("help")
+		fmt.Println("  - show a list of available commands")
+	}
 }
 
 // This is the main function of the application.
@@ -89,5 +157,13 @@ func (t *Terminal) Execute(command string) {
 // See https://golang.org/pkg/bufio/#Reader and especially the ReadLine
 // function.
 func main() {
-
+	scanner := bufio.NewScanner(os.Stdin)
+	terminal := Terminal{}
+	wd, _ := os.Getwd()
+	fmt.Print(wd, "> ")
+	for scanner.Scan() {
+		terminal.Execute(scanner.Text())
+		wd, _ = os.Getwd()
+		fmt.Print(wd, "> ")
+	}
 }
