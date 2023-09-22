@@ -28,6 +28,30 @@ type rot13Reader struct {
 	r io.Reader
 }
 
+var rot13Map map[byte]byte = make(map[byte]byte, 52)
+var rot13MapReady bool = false
+func rot13MapInit() {
+	if rot13MapReady {
+		return
+	}
+	rot13MapInput := []byte(
+			"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+	rot13MapOutput := []byte(
+			"NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm")
+	for i, v := range rot13MapInput {
+		rot13Map[v] = rot13MapOutput[i]
+	}
+	rot13MapReady = true
+}
+
 func (r rot13Reader) Read(p []byte) (n int, err error) {
-	return 0, nil
+	n, err = r.r.Read(p)
+	rot13MapInit()
+	for i := 0; i < n; i++ {
+		v, ok := rot13Map[p[i]]
+		if ok {
+			p[i] = v
+		}
+	}
+	return
 }
