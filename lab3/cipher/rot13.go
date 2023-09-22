@@ -30,14 +30,15 @@ type rot13Reader struct {
 
 var rot13Map map[byte]byte = make(map[byte]byte, 52)
 var rot13MapReady bool = false
+
 func rot13MapInit() {
 	if rot13MapReady {
 		return
 	}
 	rot13MapInput := []byte(
-			"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
 	rot13MapOutput := []byte(
-			"NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm")
+		"NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm")
 	for i, v := range rot13MapInput {
 		rot13Map[v] = rot13MapOutput[i]
 	}

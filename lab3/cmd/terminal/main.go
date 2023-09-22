@@ -82,12 +82,10 @@ import (
 
 // Terminal contains
 type Terminal struct {
-	// TODO (student): Add field(s) if necessary
 }
 
 // Execute executes a given command
 func (t *Terminal) Execute(command string) {
-	// TODO(wathne): Preserve whitespaces in command arguments.
 	substrings := strings.Fields(command)
 	length := len(substrings)
 	if length == 0 {
