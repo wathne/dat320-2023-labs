@@ -39,5 +39,24 @@ that writer's index position.
 // WriteTo writes b to the provided writers, returns a slice of the number
 // of byte written to each writer, and a slice of errors, if any.
 func WriteTo(b []byte, writers ...io.Writer) (n []int, errs errors.Errors) {
-	return []int{}, nil
+	byteTotal := len(b)
+	writerTotal := len(writers)
+	n = make([]int, writerTotal, writerTotal)
+	errs = make(errors.Errors, writerTotal, writerTotal)
+	hasError := false
+	for i, writer := range writers {
+		n[i], errs[i] = writer.Write(b)
+		if errs[i] != nil {
+			hasError = true
+			continue
+		}
+		if n[i] < byteTotal {
+			errs[i] = io.ErrShortWrite
+			hasError = true
+		}
+	}
+	if hasError {
+		return n, errs
+	}
+	return n, nil
 }
