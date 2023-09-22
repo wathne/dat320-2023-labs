@@ -1,5 +1,8 @@
 package stringer
 
+import "strconv"
+import "strings"
+
 /*
 Task 2: Stringers
 
@@ -38,5 +41,13 @@ type Book struct {
 }
 
 func (b Book) String() string {
-	return ""
+	title := b.Title
+	first_name := b.Author.FirstName
+	last_name := b.Author.LastName
+	distributor := b.Distributor
+	release_year := strconv.Itoa(b.ReleaseYear)
+	return strings.Join([]string{
+		"Title: ", title, " by ", last_name, ", ", first_name, ". ",
+		"Released: ", release_year, ", ", distributor, " Distribution.",
+	}, "")
 }
