@@ -1,5 +1,11 @@
 package cipher
 
+import (
+	"math/rand"
+	"strconv"
+	"strings"
+)
+
 /*
 Task 4: Scrambling text
 
@@ -26,7 +32,25 @@ Use the Shuffle function to ensure you reach the same values as given in the tes
 */
 
 func scramble(text string, seed int64) string {
-	// you will need this function:
-	tokenize(text)
-	return ""
+	rand.Seed(seed)
+	tokens := tokenize(text)
+	tokensTotal := len(tokens)
+	asdf := make([]string, tokensTotal, tokensTotal)
+	for i, token := range tokens {
+		bytes := []byte(token)
+		if len(bytes) < 4 {
+			asdf[i] = token
+			continue
+		}
+		if _, err := strconv.ParseFloat(token, 64); err == nil {
+			asdf[i] = token
+			continue
+		}
+		core := bytes[1 : len(bytes)-1]
+		rand.Shuffle(len(core), func(x, y int) {
+			core[x], core[y] = core[y], core[x]
+		})
+		asdf[i] = string(bytes)
+	}
+	return strings.Join(asdf, "")
 }
