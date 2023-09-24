@@ -7,19 +7,26 @@ import (
 
 // Avg returns the average of a metric defined by the function f.
 func (sch Schedule) Avg(f func(*job.Job) time.Duration) time.Duration {
-	// TODO implement task 2.4(a)
+	// Implemented task 2.4(a)
 	sum := time.Duration(0)
-	return sum
+	var i int
+	var entry *Entry
+	for i, entry = range sch {
+		sum += f(entry.Job)
+	}
+	return time.Duration(float64(sum) / float64(i+1))
 }
 
 func (sch Schedule) AvgResponseTime() time.Duration {
-	// TODO implement task 2.4(b)
-	sum := time.Duration(0)
-	return sum
+	// Implemented task 2.4(b)
+	return sch.Avg(func(j *job.Job) time.Duration {
+		return j.ResponseTime()
+	})
 }
 
 func (sch Schedule) AvgTurnaroundTime() time.Duration {
-	// TODO implement task 2.4(b)
-	sum := time.Duration(0)
-	return sum
+	// Implemented task 2.4(b)
+	return sch.Avg(func(j *job.Job) time.Duration {
+		return j.TurnaroundTime()
+	})
 }
