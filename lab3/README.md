@@ -200,4 +200,4 @@ Instructions for fetching the latest changes are [here](https://github.com/dat32
    You can use the [`os.Getwd` function](https://golang.org/pkg/os/#Getwd) to find the current working directory.
    This could be implemented in a function named `printPrompt()`.
 
-9. When you are done with all assignments and want to submit the final version, please follow these [instructions](https://github.com/dat320-2023/info/blob/main/lab-submission.md#final-submission-of-labx).
+9. When you are done with all assignments and want to submit the final version, please follow these [instructions](https://github.com/dat320-2023/info/blob/master/lab-submission.md#final-submission-of-labx).
