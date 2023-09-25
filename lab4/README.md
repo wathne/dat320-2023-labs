@@ -24,7 +24,7 @@
 
 In this lab, you will build a job scheduler able to schedule jobs according to different scheduling policies.
 
-***Please note that in order to obtain approval for this lab, as well as all subsequent group labs, it is necessary to deliver your code, in group, to one of the student assistants.***
+<span style="color:red">Please note that in order to obtain approval for this lab, as well as all subsequent group labs, it is necessary to deliver your code, in group, to one of the student assistants.</span>
 
 ## Scheduling
 
