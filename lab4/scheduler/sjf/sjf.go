@@ -3,22 +3,34 @@ package sjf
 import (
 	"dat320/lab4/scheduler/cpu"
 	"dat320/lab4/scheduler/job"
+	"sort"
 	"time"
 )
 
 type sjf struct {
 	queue job.Jobs
 	cpu   *cpu.CPU
-	// TODO(student) add missing fields, if necessary
 }
 
 func New(cpus []*cpu.CPU) *sjf {
-	// TODO(student) construct new SJF scheduler
-	return nil
+	// Construct new SJF scheduler.
+	if len(cpus) != 1 {
+		panic("sjf scheduler supports only a single CPU")
+	}
+	return &sjf{
+		cpu:   cpus[0],
+		queue: make(job.Jobs, 0),
+	}
 }
 
 func (s *sjf) Add(job *job.Job) {
-	// TODO(student) Add job to queue
+	// Add job to queue.
+	q := &s.queue
+	*q = append(*q, job)
+	// Sort queue by least remaining time.
+	sort.Slice(*q, func(i, j int) bool {
+		return (*q)[i].Remaining() < (*q)[j].Remaining()
+	})
 }
 
 // Tick runs the scheduled jobs for the system time, and returns
@@ -26,17 +38,33 @@ func (s *sjf) Add(job *job.Job) {
 // the Tick method may assign new jobs to the CPU before returning.
 func (s *sjf) Tick(systemTime time.Duration) int {
 	jobsFinished := 0
-	// TODO(student) Implement Tick
+	// Implement Tick.
+	if s.cpu.IsRunning() {
+		if s.cpu.Tick() {
+			jobsFinished++
+			s.reassign()
+		}
+	} else {
+		// CPU is idle, find new job in own queue
+		s.reassign()
+	}
 	return jobsFinished
 }
 
 // reassign assigns a job to the cpu
 func (s *sjf) reassign() {
-	// TODO(student) Implement reassign and use it from Tick
+	// Implement reassign and use it from Tick.
+	nxtJob := s.getNewJob()
+	s.cpu.Assign(nxtJob)
 }
 
 // getNewJob finds a new job to run on the CPU, removes the job from the queue and returns the job
 func (s *sjf) getNewJob() *job.Job {
-	// TODO(student) Implement getNewJob and use it from reassign
-	return nil
+	// Implement getNewJob and use it from reassign.
+	if len(s.queue) == 0 {
+		return nil
+	}
+	removedJob := s.queue[0]
+	s.queue = s.queue[1:]
+	return removedJob
 }
