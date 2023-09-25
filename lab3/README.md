@@ -82,7 +82,7 @@ Answer these multiple choice questions about [Go programming](go_questions.md).
 ### Task 3: Go Exercises
 
 Before you start working on the assignments below, make sure that your local working copy has all the latest changes from the course [assignments](https://github.com/dat320-2023/assignments) repository.
-Instructions for fetching the latest changes are [here](https://github.com/dat320-2023/info/blob/main/lab-submission.md#update-local-working-copy-from-course-assignments).
+Instructions for fetching the latest changes are [here](https://github.com/dat320-2023/info/blob/master/lab-submission.md#update-local-working-copy-from-course-assignments).
 
 1. In the following, we will use `sequence/triangular.go` exercise as an example.
    The file contains the following skeleton code and task description:
