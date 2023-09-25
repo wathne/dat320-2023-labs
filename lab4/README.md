@@ -6,7 +6,7 @@
 | Deadline:                | **October 7, 2023 23:59** |
 | Expected effort:         | 20-30 hours |
 | Grading:                 | Pass/fail |
-| Submission:              | Individually |
+| Submission:              | Group Presentation |
 
 ## Table of Contents
 
@@ -23,6 +23,8 @@
 ## Introduction
 
 In this lab, you will build a job scheduler able to schedule jobs according to different scheduling policies.
+
+***Please note that in order to obtain approval for this lab, as well as all subsequent group labs, it is necessary to deliver your code, in group, to one of the student assistants.***
 
 ## Scheduling
 
