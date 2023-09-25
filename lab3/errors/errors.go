@@ -32,7 +32,7 @@ The error string return by the corresponding Error() method.
 
 The first error + " (and 1 other error)"
 
-4. When there are X>1 errors in the slice, it should return:
+4. When there are more than two errors in the slice (first + X; where X>1), it should return:
 
 The first error + " (and X other errors)"
 */
