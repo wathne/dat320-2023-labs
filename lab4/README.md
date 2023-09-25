@@ -6,7 +6,7 @@
 | Deadline:                | **October 7, 2023 23:59** |
 | Expected effort:         | 20-30 hours |
 | Grading:                 | Pass/fail |
-| Submission:              | Group Presentation |
+| Submission:              | Group |
 
 ## Table of Contents
 
