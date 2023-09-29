@@ -27,10 +27,17 @@ func (s *sjf) Add(job *job.Job) {
 	// Add job to queue.
 	q := &s.queue
 	*q = append(*q, job)
+	// Sort queue by least estimated time.
+	// The Jobs type implements the sort interface.
+	sort.Stable(*q)
+	// Sort queue by least estimated time.
+	//sort.SliceStable(*q, q.Less)
 	// Sort queue by least remaining time.
-	sort.Slice(*q, func(i, j int) bool {
+	/*
+	sort.SliceStable(*q, func(i, j int) bool {
 		return (*q)[i].Remaining() < (*q)[j].Remaining()
 	})
+	*/
 }
 
 // Tick runs the scheduled jobs for the system time, and returns
