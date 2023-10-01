@@ -2,6 +2,7 @@ package system
 
 import (
 	"dat320/lab4/scheduler/job"
+	"math"
 	"time"
 )
 
@@ -14,7 +15,7 @@ func (sch Schedule) Avg(f func(*job.Job) time.Duration) time.Duration {
 	for i, entry = range sch {
 		sum += f(entry.Job)
 	}
-	return time.Duration(float64(sum) / float64(i+1))
+	return time.Duration(math.Round(float64(sum) / float64(i+1)))
 }
 
 func (sch Schedule) AvgResponseTime() time.Duration {
