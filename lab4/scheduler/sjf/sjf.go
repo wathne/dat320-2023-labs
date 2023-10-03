@@ -34,9 +34,9 @@ func (s *sjf) Add(job *job.Job) {
 	//sort.SliceStable(*q, q.Less)
 	// Sort queue by least remaining time.
 	/*
-	sort.SliceStable(*q, func(i, j int) bool {
-		return (*q)[i].Remaining() < (*q)[j].Remaining()
-	})
+		sort.SliceStable(*q, func(i, j int) bool {
+			return (*q)[i].Remaining() < (*q)[j].Remaining()
+		})
 	*/
 }
 
