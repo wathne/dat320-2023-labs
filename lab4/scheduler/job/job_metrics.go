@@ -13,13 +13,13 @@ func (j *Job) Scheduled(s systime.SystemTime) {
 	// (itself) as the argument. See below, as we set the embedded interface.
 	j.SystemTime = s
 	// Implemented task 2.1
-	j.arrival = j.Now()
+	j.arrival = j.Now() //nolint:typecheck
 }
 
 func (j *Job) Started(cpuID int) {
 	// Implemented task 2.2
 	if j.start == NotStartedYet {
-		j.start = j.Now()
+		j.start = j.Now() //nolint:typecheck
 	}
 }
 

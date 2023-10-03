@@ -105,7 +105,7 @@ func (j *Job) run(durationToRun time.Duration) bool {
 func (j *Job) Tick() bool {
 	done := j.run(systime.TickDuration * time.Duration(j.speed))
 	if done {
-		j.finished = j.Now()
+		j.finished = j.Now() //nolint:typecheck
 	}
 	return done
 }
