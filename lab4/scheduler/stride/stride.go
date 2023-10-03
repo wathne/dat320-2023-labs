@@ -72,10 +72,10 @@ func (s *stride) getNewJob() *job.Job {
 	if len(s.queue) == 0 {
 		return nil
 	}
-	index := MinPass(s.queue)
-	removedJob := s.queue[index]
+	i := MinPass(s.queue)
+	removedJob := s.queue[i]
 	removedJob.Pass += removedJob.Stride
-	s.queue = append(s.queue[:index], s.queue[index+1:]...)
+	s.queue = append(s.queue[:i], s.queue[i+1:]...)
 	return removedJob
 }
 
