@@ -11,7 +11,7 @@ type stride struct {
 	queue job.Jobs
 	cpu   *cpu.CPU
 	// Add missing fields.
-	quantum time.Duration
+	quantum   time.Duration
 	remaining time.Duration
 }
 
@@ -21,9 +21,9 @@ func New(cpus []*cpu.CPU, quantum time.Duration) *stride {
 		panic("stride scheduler supports only a single CPU")
 	}
 	return &stride{
-		cpu: cpus[0],
-		quantum: quantum,
-		queue: make(job.Jobs, 0),
+		cpu:       cpus[0],
+		quantum:   quantum,
+		queue:     make(job.Jobs, 0),
 		remaining: time.Duration(0),
 	}
 }
