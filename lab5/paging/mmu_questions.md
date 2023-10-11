@@ -6,7 +6,7 @@ Selecting more than one choice will result in zero points.
 No other changes to the text should be made.
 
 1. How is memory divided using memory management based on simple paging?
-    - [ ] a) fixed-sized chunks
+    - [x] a) fixed-sized chunks
     - [ ] b) variable-sized chunks
     - [ ] c) hybrid chunks
     - [ ] d) virtual chunks
@@ -14,11 +14,11 @@ No other changes to the text should be made.
 2. Which option is *not* a problem when using paging?
     - [ ] a) internal fragmentation
     - [ ] b) storing page tables wastes memory
-    - [ ] c) external fragmentation
+    - [x] c) external fragmentation
     - [ ] d) address translation requires extra memory accesses (reading the page table)
 
 3. What is the purpose of the free list in paged memory?
     - [ ] a) keeping track of unused virtual page frames
     - [ ] b) keeping track of unused virtual memory segments
     - [ ] c) keeping track of unused virtual address spaces
-    - [ ] d) keeping track of unused physical page frames
+    - [x] d) keeping track of unused physical page frames
