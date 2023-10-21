@@ -11,6 +11,7 @@ var (
 	errFreeListDuplicateOp = errors.New("tried to update a free list entry to its current state")
 	errInvalidProcess      = errors.New("process does not exist")
 	errFreeOutOfBounds     = errors.New("cannot free more pages than have been allocated")
+	errArgOutOfBounds      = errors.New("function argument is out of bounds")
 )
 
 var errNotImplemented = errors.New("this is not yet implemented")
