@@ -6,7 +6,7 @@ import (
 
 // MMU is the structure for the simulated memory management unit.
 type MMU struct {
-	frames    [][]byte           // contains memory content in form of frames[frameIndex][offset]
+	frames    [][]byte // contains memory content in form of frames[frameIndex][offset]
 	frameSize int
 	freeList                     // tracks free physical frames
 	processes map[int]*PageTable // contains page table for each process (key=pid)
@@ -39,15 +39,15 @@ var OffsetLookupTable = []int{
 func NewMMU(memSize, frameSize int) *MMU {
 	// Task 2: initialize the MMU object
 	numFrames := memSize / frameSize
-	frames := make([][]byte, numFrames, numFrames)
+	frames := make([][]byte, numFrames)
 	// A trick to improve memory locality.
-	bytes := make([]byte, numFrames * frameSize, numFrames * frameSize)
+	bytes := make([]byte, numFrames*frameSize)
 	for i := 0; i < numFrames; i++ {
 		// Full slice expressions: http://golang.org/ref/spec#Slice_expressions
 		// a[low : high : max], it controls the resulting slice's capacity by
 		// setting it to max - low. In our case, the capacity of each frame is:
 		// ((i+1) * frameSize) - (i * frameSize) = frameSize
-		frames[i] = bytes[i * frameSize : (i+1) * frameSize : (i+1) * frameSize]
+		frames[i] = bytes[i*frameSize : (i+1)*frameSize : (i+1)*frameSize]
 	}
 	return &MMU{
 		frames:    frames,
@@ -111,10 +111,10 @@ func (mmu *MMU) Write(pid, virtualAddress int, content []byte) error {
 	frames := &mmu.frames
 	frameSize := mmu.frameSize
 	pageTable := mmu.processes[pid]
-	bytesAvailable := (pageTable.Len() - vpn) * frameSize - offset
+	bytesAvailable := (pageTable.Len()-vpn)*frameSize - offset
 	bytesRequired := len(content)
 	if bytesRequired > bytesAvailable {
-		err2 := mmu.Alloc(pid, bytesRequired - bytesAvailable)
+		err2 := mmu.Alloc(pid, bytesRequired-bytesAvailable)
 		if err2 != nil {
 			return err2
 		}
@@ -128,9 +128,9 @@ func (mmu *MMU) Write(pid, virtualAddress int, content []byte) error {
 			offset = 0
 			vpn++
 			pfn, err3 = pageTable.Lookup(vpn)
-				if err3 != nil {
-					return err3
-				}
+			if err3 != nil {
+				return err3
+			}
 		}
 		(*frames)[pfn][offset] = byte
 		offset++
@@ -157,7 +157,7 @@ func (mmu *MMU) Read(pid, virtualAddress, n int) (content []byte, err error) {
 	frames := &mmu.frames
 	frameSize := mmu.frameSize
 	pageTable := mmu.processes[pid]
-	bytesAvailable := (pageTable.Len() - vpn) * frameSize - offset
+	bytesAvailable := (pageTable.Len()-vpn)*frameSize - offset
 	if n > bytesAvailable {
 		return nil, errAddressOutOfBounds
 	}
@@ -165,15 +165,15 @@ func (mmu *MMU) Read(pid, virtualAddress, n int) (content []byte, err error) {
 	if err2 != nil {
 		return nil, err2
 	}
-	content = make([]byte, n, n)
+	content = make([]byte, n)
 	for i := range content {
 		if offset >= frameSize {
 			offset = 0
 			vpn++
 			pfn, err2 = pageTable.Lookup(vpn)
-				if err2 != nil {
-					return nil, err2
-				}
+			if err2 != nil {
+				return nil, err2
+			}
 		}
 		content[i] = (*frames)[pfn][offset]
 		offset++

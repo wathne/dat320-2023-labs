@@ -18,18 +18,18 @@ func (pt *PageTable) Append(pages []int) {
 func (pt *PageTable) Free(n int) ([]int, error) {
 	// Implement free functionality for the pagetable
 	if n < 0 {
-		return make([]int, 0, 0), errArgOutOfBounds
+		return make([]int, 0), errArgOutOfBounds
 	}
 	if n == 0 {
-		return make([]int, 0, 0), nil
+		return make([]int, 0), nil
 	}
 	a := &pt.frameIndices
 	if n > len(*a) {
-		return make([]int, 0, 0), errFreeOutOfBounds
+		return make([]int, 0), errFreeOutOfBounds
 	}
-	freedFrames := make([]int, n, n)
-	copy(freedFrames, (*a)[len(*a) - n : len(*a) : len(*a)])
-	*a = (*a)[0 : len(*a) - n : len(*a) - n]
+	freedFrames := make([]int, n)
+	copy(freedFrames, (*a)[len(*a)-n:len(*a):len(*a)])
+	*a = (*a)[0 : len(*a)-n : len(*a)-n]
 	return freedFrames, nil
 }
 
