@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"runtime"
+	"sync"
 	"unicode"
 )
 
@@ -58,6 +59,52 @@ func parallelWordCount(input []byte) (words int) {
 }
 
 func doParallelWordCount(input []byte, numShards int) (words int) {
-	// TODO(student) implement parallel word count
-	return 0
+	// Implement parallel word count.
+	// WaitGroup
+	return doParallelWordCountWaitGroup(input, numShards)
+	// Channel
+	//return doParallelWordCountChannel(input, numShards)
+}
+
+func doParallelWordCountWaitGroup(input []byte, numShards int) (words int) {
+	words = 0
+	shards := shardSlice(input, numShards)
+	var wg sync.WaitGroup
+	var mutex sync.Mutex
+	for i := range shards {
+		wg.Add(1)
+		go func(
+			wg *sync.WaitGroup,
+			mutex *sync.Mutex,
+			shard *[]byte,
+			words *int,
+		) {
+			wordCount := wordCount(*shard)
+			mutex.Lock()
+			*words += wordCount
+			mutex.Unlock()
+			wg.Done()
+		}(&wg, &mutex, &shards[i], &words)
+	}
+	wg.Wait()
+	return words
+}
+
+func doParallelWordCountChannel(input []byte, numShards int) (words int) {
+	words = 0
+	shards := shardSlice(input, numShards)
+	channel := make(chan int, numShards)
+	for i := range shards {
+		go func(
+			channel *chan int,
+			shard *[]byte,
+		) {
+			*channel <- wordCount(*shard)
+		}(&channel, &shards[i])
+	}
+	// Wait for all goroutines to finish.
+	for i := 0; i < numShards; i++ {
+		words += <-channel
+	}
+	return words
 }
