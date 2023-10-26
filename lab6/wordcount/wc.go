@@ -68,10 +68,11 @@ func doParallelWordCount(input []byte, numShards int) (words int) {
 
 func doParallelWordCountWaitGroup(input []byte, numShards int) (words int) {
 	words = 0
-	shards := shardSlice(input, numShards)
+	var shards [][]byte = shardSlice(input, numShards)
 	var wg sync.WaitGroup
 	var mutex sync.Mutex
-	for i := range shards {
+	var i int
+	for i = range shards {
 		wg.Add(1)
 		go func(
 			wg *sync.WaitGroup,
@@ -92,19 +93,27 @@ func doParallelWordCountWaitGroup(input []byte, numShards int) (words int) {
 
 func doParallelWordCountChannel(input []byte, numShards int) (words int) {
 	words = 0
-	shards := shardSlice(input, numShards)
-	channel := make(chan int, numShards)
-	for i := range shards {
+	var shards [][]byte = shardSlice(input, numShards)
+	var channel chan int = make(chan int, numShards) // Buffered channel.
+	var sender chan<- int = channel                  // Send-only channel.
+	var receiver <-chan int = channel                // Receive-only channel.
+	var i int
+	for i = range shards {
 		go func(
-			channel *chan int,
+			sender chan<- int,
 			shard *[]byte,
 		) {
-			*channel <- wordCount(*shard)
-		}(&channel, &shards[i])
+			sender <- wordCount(*shard)
+		}(sender, &shards[i])
 	}
-	// Wait for all goroutines to finish.
-	for i := 0; i < numShards; i++ {
-		words += <-channel
+	var wordCount int
+	for wordCount = range receiver {
+		words += wordCount
+		if i == 0 {
+			close(sender)
+		} else {
+			i--
+		}
 	}
 	return words
 }
