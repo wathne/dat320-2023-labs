@@ -1,6 +1,8 @@
 package fizzbizz
 
 import (
+	"dat320/lab6/wathne" // Logging.
+	"strconv"
 	"sync"
 )
 
@@ -17,6 +19,7 @@ type SyncBlock struct {
 	current int
 	max     int
 	result  string
+	printer chan<- string // Logging.
 }
 
 // newSyncBlock initializes the SyncBlock.
@@ -25,6 +28,8 @@ func newSyncBlock(max int) *SyncBlock {
 	block.max = max
 	block.current = 1
 	block.cond = sync.NewCond(block)
+	// Initialize a safe buffered printer.
+	block.printer = wathne.NewPrinter(32) // Logging.
 	return block
 }
 
@@ -45,7 +50,29 @@ func (s *SyncBlock) appendToResult(partialResult string) {
 // increment the value of s.current.
 func (s *SyncBlock) fizz() {
 	defer s.wg.Done()
-	// TODO(student) implement the fizz routine
+	// Implement the fizz routine.
+	// Wait for available mutex. Lock mutex on resume.
+	s.cond.L.Lock()
+	for {
+		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
+		if (s.current > s.max) {
+			s.printer <- wathne.LogFizzBizzBreak() // Logging.
+			s.cond.Broadcast()
+			s.cond.L.Unlock()
+			break
+		}
+		if (s.current % 3 == 0) && (s.current % 5 != 0) {
+			s.appendToResult("Fizz")
+			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
+		} else {
+			s.printer <- wathne.LogFizzBizzFalse(s.result) // Logging.
+		}
+		s.cond.Broadcast()
+		// Unlock mutex. Wait for broadcast. Wait for available mutex.
+		// Lock mutex on resume.
+		s.cond.Wait()
+	}
+	s.printer <- wathne.LogFizzBizzDone() // Logging.
 }
 
 // bizz appends "Bizz" to the result if
@@ -57,7 +84,29 @@ func (s *SyncBlock) fizz() {
 // increment the value of s.current.
 func (s *SyncBlock) bizz() {
 	defer s.wg.Done()
-	// TODO(student) implement the bizz routine
+	// Implement the bizz routine.
+	// Wait for available mutex. Lock mutex on resume.
+	s.cond.L.Lock()
+	for {
+		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
+		if (s.current > s.max) {
+			s.printer <- wathne.LogFizzBizzBreak() // Logging.
+			s.cond.Broadcast()
+			s.cond.L.Unlock()
+			break
+		}
+		if (s.current % 5 == 0) && (s.current % 3 != 0) {
+			s.appendToResult("Bizz")
+			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
+		} else {
+			s.printer <- wathne.LogFizzBizzFalse(s.result) // Logging.
+		}
+		s.cond.Broadcast()
+		// Unlock mutex. Wait for broadcast. Wait for available mutex.
+		// Lock mutex on resume.
+		s.cond.Wait()
+	}
+	s.printer <- wathne.LogFizzBizzDone() // Logging.
 }
 
 // number appends s.current (as a string) to the result if
@@ -69,7 +118,29 @@ func (s *SyncBlock) bizz() {
 // increment the value of s.current.
 func (s *SyncBlock) number() {
 	defer s.wg.Done()
-	// TODO(student) implement the number routine
+	// Implement the number routine.
+	// Wait for available mutex. Lock mutex on resume.
+	s.cond.L.Lock()
+	for {
+		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
+		if (s.current > s.max) {
+			s.printer <- wathne.LogFizzBizzBreak() // Logging.
+			s.cond.Broadcast()
+			s.cond.L.Unlock()
+			break
+		}
+		if (s.current % 5 != 0) && (s.current % 3 != 0) {
+			s.appendToResult(strconv.Itoa(s.current))
+			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
+		} else {
+			s.printer <- wathne.LogFizzBizzFalse(s.result) // Logging.
+		}
+		s.cond.Broadcast()
+		// Unlock mutex. Wait for broadcast. Wait for available mutex.
+		// Lock mutex on resume.
+		s.cond.Wait()
+	}
+	s.printer <- wathne.LogFizzBizzDone() // Logging.
 }
 
 // fizzBizz appends "FizzBizz" to the result if
@@ -81,7 +152,29 @@ func (s *SyncBlock) number() {
 // increment the value of s.current.
 func (s *SyncBlock) fizzBizz() {
 	defer s.wg.Done()
-	// TODO(student) implement the fizzbizz routine
+	// Implement the fizzbizz routine.
+	// Wait for available mutex. Lock mutex on resume.
+	s.cond.L.Lock()
+	for {
+		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
+		if (s.current > s.max) {
+			s.printer <- wathne.LogFizzBizzBreak() // Logging.
+			s.cond.Broadcast()
+			s.cond.L.Unlock()
+			break
+		}
+		if (s.current % 5 == 0) && (s.current % 3 == 0) {
+			s.appendToResult("FizzBizz")
+			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
+		} else {
+			s.printer <- wathne.LogFizzBizzFalse(s.result) // Logging.
+		}
+		s.cond.Broadcast()
+		// Unlock mutex. Wait for broadcast. Wait for available mutex.
+		// Lock mutex on resume.
+		s.cond.Wait()
+	}
+	s.printer <- wathne.LogFizzBizzDone() // Logging.
 }
 
 // FizzBizz returns the result of the fizzbizz algorithm for the given max.
