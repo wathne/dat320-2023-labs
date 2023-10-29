@@ -18,7 +18,7 @@ const (
 )
 
 // Initializes a safe buffered printer.
-func NewPrinter(buffer int) (chan<- string) {
+func NewPrinter(buffer int) chan<- string {
 	var channel chan string = make(chan string, buffer)
 	var receiver <-chan string = channel
 	var sender chan<- string = channel
@@ -35,8 +35,7 @@ func getCallerName(skip int) (string, bool) {
 	var pc uintptr
 	var ok bool
 	pc, _, _, ok = runtime.Caller(skip)
-	var fn *runtime.Func
-	fn = runtime.FuncForPC(pc)
+	var fn *runtime.Func = runtime.FuncForPC(pc)
 	if ok && fn != nil {
 		return fn.Name(), true
 	}
@@ -44,7 +43,7 @@ func getCallerName(skip int) (string, bool) {
 }
 
 // fizzbizz
-func getFizzBizzName(skip int) (string) {
+func getFizzBizzName(skip int) string {
 	var callerName string
 	var ok bool
 	callerName, ok = getCallerName(skip)
@@ -65,7 +64,7 @@ func getFizzBizzName(skip int) (string) {
 }
 
 // fizzbizz
-func getFizzBizzColor(name string) (string) {
+func getFizzBizzColor(name string) string {
 	switch name {
 	case "fizz":
 		return Red
@@ -80,7 +79,7 @@ func getFizzBizzColor(name string) (string) {
 }
 
 // fizzbizz
-func getFizzBizzNameAlignment(name string) (string) {
+func getFizzBizzNameAlignment(name string) string {
 	switch name {
 	case "fizz":
 		return "    "
@@ -95,7 +94,7 @@ func getFizzBizzNameAlignment(name string) (string) {
 }
 
 // fizzbizz
-func LogFizzBizzRoutine(current int) (string) {
+func LogFizzBizzRoutine(current int) string {
 	var name string = getFizzBizzName(3)
 	var color string = getFizzBizzColor(name)
 	var spaces string = getFizzBizzNameAlignment(name)
@@ -103,28 +102,28 @@ func LogFizzBizzRoutine(current int) (string) {
 }
 
 // fizzbizz
-func LogFizzBizzTrue(result string) (string) {
+func LogFizzBizzTrue(result string) string {
 	var name string = getFizzBizzName(3)
 	var color string = getFizzBizzColor(name)
 	return fmt.Sprint(color, "true   ", result, NC)
 }
 
 // fizzbizz
-func LogFizzBizzFalse(result string) (string) {
+func LogFizzBizzFalse(result string) string {
 	var name string = getFizzBizzName(3)
 	var color string = getFizzBizzColor(name)
 	return fmt.Sprint(color, "false  ", result, NC)
 }
 
 // fizzbizz
-func LogFizzBizzBreak() (string) {
+func LogFizzBizzBreak() string {
 	var name string = getFizzBizzName(3)
 	var color string = getFizzBizzColor(name)
 	return fmt.Sprint(color, "breaking... ", NC)
 }
 
 // fizzbizz
-func LogFizzBizzDone() (string) {
+func LogFizzBizzDone() string {
 	var name string = getFizzBizzName(3)
 	var color string = getFizzBizzColor(name)
 	return fmt.Sprint(color, "done", NC)

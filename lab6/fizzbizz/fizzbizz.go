@@ -55,13 +55,13 @@ func (s *SyncBlock) fizz() {
 	s.cond.L.Lock()
 	for {
 		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
-		if (s.current > s.max) {
+		if s.current > s.max {
 			s.printer <- wathne.LogFizzBizzBreak() // Logging.
 			s.cond.Broadcast()
 			s.cond.L.Unlock()
 			break
 		}
-		if (s.current % 3 == 0) && (s.current % 5 != 0) {
+		if (s.current%3 == 0) && (s.current%5 != 0) {
 			s.appendToResult("Fizz")
 			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
 		} else {
@@ -89,13 +89,13 @@ func (s *SyncBlock) bizz() {
 	s.cond.L.Lock()
 	for {
 		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
-		if (s.current > s.max) {
+		if s.current > s.max {
 			s.printer <- wathne.LogFizzBizzBreak() // Logging.
 			s.cond.Broadcast()
 			s.cond.L.Unlock()
 			break
 		}
-		if (s.current % 5 == 0) && (s.current % 3 != 0) {
+		if (s.current%5 == 0) && (s.current%3 != 0) {
 			s.appendToResult("Bizz")
 			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
 		} else {
@@ -123,13 +123,13 @@ func (s *SyncBlock) number() {
 	s.cond.L.Lock()
 	for {
 		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
-		if (s.current > s.max) {
+		if s.current > s.max {
 			s.printer <- wathne.LogFizzBizzBreak() // Logging.
 			s.cond.Broadcast()
 			s.cond.L.Unlock()
 			break
 		}
-		if (s.current % 5 != 0) && (s.current % 3 != 0) {
+		if (s.current%5 != 0) && (s.current%3 != 0) {
 			s.appendToResult(strconv.Itoa(s.current))
 			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
 		} else {
@@ -157,13 +157,13 @@ func (s *SyncBlock) fizzBizz() {
 	s.cond.L.Lock()
 	for {
 		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
-		if (s.current > s.max) {
+		if s.current > s.max {
 			s.printer <- wathne.LogFizzBizzBreak() // Logging.
 			s.cond.Broadcast()
 			s.cond.L.Unlock()
 			break
 		}
-		if (s.current % 5 == 0) && (s.current % 3 == 0) {
+		if (s.current%5 == 0) && (s.current%3 == 0) {
 			s.appendToResult("FizzBizz")
 			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
 		} else {
