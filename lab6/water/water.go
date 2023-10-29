@@ -13,13 +13,19 @@ type Water struct {
 	wg            sync.WaitGroup
 	moleculeCount int
 	result        string
-	// TODO(student) add missing fields, if necessary
+	// Add missing fields, if necessary.
+	done     chan bool
+	hydrogen chan string
+	oxygen   chan string
 }
 
 // New initializes the water structure.
 func New() *Water {
 	water := &Water{}
-	// TODO(student) initialize the Water struct
+	// Initialize the Water struct.
+	water.done = make(chan bool)
+	water.hydrogen = make(chan string)
+	water.oxygen = make(chan string)
 	return water
 }
 
@@ -30,7 +36,8 @@ func New() *Water {
 // The w.wg.Done() must be called to indicate the completion of the goroutine.
 func (w *Water) releaseOxygen() {
 	defer w.wg.Done()
-	// TODO(student) implement the releaseOxygen routine
+	// Implement the releaseOxygen routine.
+	w.oxygen <- "O"
 }
 
 // releaseHydrogen produces one hydrogen atom unless two hydrogen atoms are already present.
@@ -40,22 +47,48 @@ func (w *Water) releaseOxygen() {
 // The w.wg.Done() must be called to indicate the completion of the goroutine.
 func (w *Water) releaseHydrogen() {
 	defer w.wg.Done()
-	// TODO(student) implement the releaseHydrogen routine
+	// Implement the releaseHydrogen routine.
+	w.hydrogen <- "H"
 }
 
 // produceMolecule forms the water molecules.
 func (w *Water) produceMolecule(done chan bool) {
-	// TODO(student) implement the produceMolecule routine
+	// Implement the produceMolecule routine.
+	var result *string = &w.result
+	var atom string
+production:
+	for {
+		select {
+		case atom = <-w.hydrogen:
+			*result += atom
+			select {
+			case atom = <-w.hydrogen:
+				*result += atom
+				*result += <-w.oxygen
+			case atom = <-w.oxygen:
+				*result += atom
+				*result += <-w.hydrogen
+			}
+		case atom = <-w.oxygen:
+			*result += atom
+			*result += <-w.hydrogen
+			*result += <-w.hydrogen
+		case <-w.done:
+			break production
+		}
+		w.moleculeCount++
+	}
 	done <- true
 }
 
 func (w *Water) finish() {
-	// TODO(student) implement the finish routine to complete the water molecule formation
+	// Implement the finish routine to complete the water molecule formation.
+	w.done <- true
 }
 
 // Molecules returns the number of water molecules that has been created.
 func (w *Water) Molecules() int {
-	// TODO(student) Add any missing code
+	// Add any missing code.
 	return w.moleculeCount
 }
 
