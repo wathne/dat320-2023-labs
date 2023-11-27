@@ -51,31 +51,22 @@ func (s *SyncBlock) appendToResult(partialResult string) {
 func (s *SyncBlock) fizz() {
 	defer s.wg.Done()
 	// Implement the fizz routine.
-	var checkpoint int
 	// Wait for available mutex. Lock mutex on resume.
 	s.cond.L.Lock()
 	for {
-		checkpoint = s.current
 		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
 		if s.current > s.max {
 			s.printer <- wathne.LogFizzBizzBreak() // Logging.
-			s.cond.Broadcast()
 			s.cond.L.Unlock()
 			break
 		}
 		if (s.current%3 == 0) && (s.current%5 != 0) {
 			s.appendToResult("Fizz")
 			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
+			// Broadcast after s.appendToResult() has incremented s.current.
 			s.cond.Broadcast()
-			// Unlock mutex. Wait for next broadcast.
-			// Wait for available mutex. Lock mutex on resume.
-			s.cond.Wait()
-			continue
 		} else {
 			s.printer <- wathne.LogFizzBizzFalse(s.result) // Logging.
-		}
-		for s.current == checkpoint {
-			s.cond.Broadcast()
 			// Unlock mutex. Wait for next broadcast.
 			// Wait for available mutex. Lock mutex on resume.
 			s.cond.Wait()
@@ -94,31 +85,22 @@ func (s *SyncBlock) fizz() {
 func (s *SyncBlock) bizz() {
 	defer s.wg.Done()
 	// Implement the bizz routine.
-	var checkpoint int
 	// Wait for available mutex. Lock mutex on resume.
 	s.cond.L.Lock()
 	for {
-		checkpoint = s.current
 		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
 		if s.current > s.max {
 			s.printer <- wathne.LogFizzBizzBreak() // Logging.
-			s.cond.Broadcast()
 			s.cond.L.Unlock()
 			break
 		}
 		if (s.current%5 == 0) && (s.current%3 != 0) {
 			s.appendToResult("Bizz")
 			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
+			// Broadcast after s.appendToResult() has incremented s.current.
 			s.cond.Broadcast()
-			// Unlock mutex. Wait for next broadcast.
-			// Wait for available mutex. Lock mutex on resume.
-			s.cond.Wait()
-			continue
 		} else {
 			s.printer <- wathne.LogFizzBizzFalse(s.result) // Logging.
-		}
-		for s.current == checkpoint {
-			s.cond.Broadcast()
 			// Unlock mutex. Wait for next broadcast.
 			// Wait for available mutex. Lock mutex on resume.
 			s.cond.Wait()
@@ -137,31 +119,22 @@ func (s *SyncBlock) bizz() {
 func (s *SyncBlock) number() {
 	defer s.wg.Done()
 	// Implement the number routine.
-	var checkpoint int
 	// Wait for available mutex. Lock mutex on resume.
 	s.cond.L.Lock()
 	for {
-		checkpoint = s.current
 		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
 		if s.current > s.max {
 			s.printer <- wathne.LogFizzBizzBreak() // Logging.
-			s.cond.Broadcast()
 			s.cond.L.Unlock()
 			break
 		}
 		if (s.current%3 != 0) && (s.current%5 != 0) {
 			s.appendToResult(strconv.Itoa(s.current))
 			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
+			// Broadcast after s.appendToResult() has incremented s.current.
 			s.cond.Broadcast()
-			// Unlock mutex. Wait for next broadcast.
-			// Wait for available mutex. Lock mutex on resume.
-			s.cond.Wait()
-			continue
 		} else {
 			s.printer <- wathne.LogFizzBizzFalse(s.result) // Logging.
-		}
-		for s.current == checkpoint {
-			s.cond.Broadcast()
 			// Unlock mutex. Wait for next broadcast.
 			// Wait for available mutex. Lock mutex on resume.
 			s.cond.Wait()
@@ -180,31 +153,22 @@ func (s *SyncBlock) number() {
 func (s *SyncBlock) fizzBizz() {
 	defer s.wg.Done()
 	// Implement the fizzbizz routine.
-	var checkpoint int
 	// Wait for available mutex. Lock mutex on resume.
 	s.cond.L.Lock()
 	for {
-		checkpoint = s.current
 		s.printer <- wathne.LogFizzBizzRoutine(s.current) // Logging.
 		if s.current > s.max {
 			s.printer <- wathne.LogFizzBizzBreak() // Logging.
-			s.cond.Broadcast()
 			s.cond.L.Unlock()
 			break
 		}
 		if (s.current%3 == 0) && (s.current%5 == 0) {
 			s.appendToResult("FizzBizz")
 			s.printer <- wathne.LogFizzBizzTrue(s.result) // Logging.
+			// Broadcast after s.appendToResult() has incremented s.current.
 			s.cond.Broadcast()
-			// Unlock mutex. Wait for next broadcast.
-			// Wait for available mutex. Lock mutex on resume.
-			s.cond.Wait()
-			continue
 		} else {
 			s.printer <- wathne.LogFizzBizzFalse(s.result) // Logging.
-		}
-		for s.current == checkpoint {
-			s.cond.Broadcast()
 			// Unlock mutex. Wait for next broadcast.
 			// Wait for available mutex. Lock mutex on resume.
 			s.cond.Wait()
